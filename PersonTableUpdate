@@ -35,28 +35,3 @@ Select p.VANID from ny.person p UNION DISTINCT select s.VANID from ny.scores s
 ##11. Change column names of scores and add new scores
 ##12. Import Scores table to server
 
-/* Record of Sessions
-3/18/2019 - Imported Person Standard Text to Server from the list of people in AC+CH+SQ that were not in the Person table. Next Steps: scores table + new vote history!
-3/25/2019 - started to update existing person table records with new vote history for 2018P… exported the contacts from VAN, and did the query in person table…
-3/27/2019 - 
-imported table with filled in 2018P records for existing person table records (therefore fully updated vote history for 2018P)
-Added all the scores we need to export to the NYS Civic Engagement c4 committee 
-Union’ed the scores + person table VANIDs, bulk imported to VAN, and exported as scores standard text
-DID NOT COMPLETE SCORES UPDATE
-4/13/2019 - 
-Since 2018g has been updated in VAN & there has been a request to have this in the dashboards by CANY, I am starting AGAIN from step 1 to do the full person table update AGAIN
-Queried step 1 and saved the VANIDs as “20190413 VANID MissingPersonTable” in Downloads
-I NEED TO FIX THIS BECAUSE order of HD, SD is all wrong -- FIXED ON 4/16/2019
-4/15/2019 - 
-Imported missing person table
-4/16/2019 - 
-Exported all 2018G nulls from server, and imported VANIDs into AmericaVotes. Saved in VAN as 20190416Person.
-Imported all missing 2018G
-Did the same for 2018P, so that is also up-to-date
-5/5/2019 - 
-Did the scores match and used americavotesvan to export the scores
-11/8/2019
-Exported the VANIDs not in person table, imported to VAN, exported the standard text file from VAN, and cleaned the sheet. Named csv “Person20191108-7498254514” in computer downloads
-Added “2019P” as new column in person table
-Imported csv to SQL Pro
-2/24/2020 - exported VANIDs not in person table, imported to VAN, exported standard text file. Then imported these records to server.*/
