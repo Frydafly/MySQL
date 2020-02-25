@@ -58,4 +58,5 @@ Did the scores match and used americavotesvan to export the scores
 11/8/2019
 Exported the VANIDs not in person table, imported to VAN, exported the standard text file from VAN, and cleaned the sheet. Named csv “Person20191108-7498254514” in computer downloads
 Added “2019P” as new column in person table
-Imported csv to SQL Pro */
+Imported csv to SQL Pro
+2/24/2020 - exported VANIDs not in person table, imported to VAN, exported standard text file. Then imported these records to server.*/
