@@ -1,0 +1,61 @@
+
+##1.UNION AC, SQ, CH VANIDs -- find which ones are not in the Person Table
+
+select p.VANID, b.VANID from (SELECT ny.activistcodes.VANID FROM ny.activistcodes
+UNION DISTINCT
+SELECT ny.contacthistory.VANID FROM ny.contacthistory
+UNION DISTINCT
+SELECT ny.surveyquestions.VANID FROM ny.surveyquestions) as b
+left join ny.person p on b.VANID = p.VANID where p.VANID is null
+
+##2. Export the above
+##3. Bulk Import to VAN & Save as “Person20190318” to 2019NYCET
+##4. Export Standard Text with custom fields existing in Person Table (use pre-set “Person” export format)
+##VANID    DWID    StateFileID    HHID    Sex    Race    Ethnicity    DoB    DoR    RegStatus    County    Party    Lat    Long    ##2012G    2013G    2014G    2015G    2016G    2017G    2018G    2012P    2013P    2014P    2015P    2016P    2017P    2018P    ##ED    CD        AD SD    NYCCD     CensusCounty    CensusTract
+
+##5. Add new vote history columns
+##6. Change column names and check that data is consistent with person table
+##7. Upload person table
+##** Also ** in order to also update existing Person Table records with new vote history
+##A. query all people that don’t have vote history in the server person table: 
+
+SELECT p.VANID FROM ny.person p WHERE p.2019P IS null
+
+##B. Import that list to VAN
+##C. Filter that list in VAN to people that DID vote in the election
+##D. export that as standard text in VAN with Person table format
+##E. import to existing person table and “replace”
+##8. Code that UNION DISTINCT scores table & person table (to get both the missing vanids and the new ones, since we will do a ##massive import of the old & the new scores)
+
+Select p.VANID from ny.person p UNION DISTINCT select s.VANID from ny.scores s
+
+##9. Bulk import to VAN
+##10. Export Standard Text with Scores
+##VANID, DWID, Scores
+##11. Change column names of scores and add new scores
+##12. Import Scores table to server
+
+/* Record of Sessions
+3/18/2019 - Imported Person Standard Text to Server from the list of people in AC+CH+SQ that were not in the Person table. Next Steps: scores table + new vote history!
+3/25/2019 - started to update existing person table records with new vote history for 2018P… exported the contacts from VAN, and did the query in person table…
+3/27/2019 - 
+imported table with filled in 2018P records for existing person table records (therefore fully updated vote history for 2018P)
+Added all the scores we need to export to the NYS Civic Engagement c4 committee 
+Union’ed the scores + person table VANIDs, bulk imported to VAN, and exported as scores standard text
+DID NOT COMPLETE SCORES UPDATE
+4/13/2019 - 
+Since 2018g has been updated in VAN & there has been a request to have this in the dashboards by CANY, I am starting AGAIN from step 1 to do the full person table update AGAIN
+Queried step 1 and saved the VANIDs as “20190413 VANID MissingPersonTable” in Downloads
+I NEED TO FIX THIS BECAUSE order of HD, SD is all wrong -- FIXED ON 4/16/2019
+4/15/2019 - 
+Imported missing person table
+4/16/2019 - 
+Exported all 2018G nulls from server, and imported VANIDs into AmericaVotes. Saved in VAN as 20190416Person.
+Imported all missing 2018G
+Did the same for 2018P, so that is also up-to-date
+5/5/2019 - 
+Did the scores match and used americavotesvan to export the scores
+11/8/2019
+Exported the VANIDs not in person table, imported to VAN, exported the standard text file from VAN, and cleaned the sheet. Named csv “Person20191108-7498254514” in computer downloads
+Added “2019P” as new column in person table
+Imported csv to SQL Pro */
