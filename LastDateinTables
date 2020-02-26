@@ -1,14 +1,14 @@
 (select 'contacthistory', c.datecreated from ny.contacthistory as c
 group by str_to_date(c.datecreated, "%m/%d/%Y")
 order by str_to_date(c.datecreated, "%m/%d/%Y") DESC
-limit 1) 
+limit 1)
 
-UNION 
+UNION
 
 (select 'activistcodes', a.datecreated from ny.activistcodes as a
 group by str_to_date(a.datecreated, "%m/%d/%Y")
 order by str_to_date(a.datecreated, "%m/%d/%Y") DESC
-limit 1) 
+limit 1)
 
 UNION
 
