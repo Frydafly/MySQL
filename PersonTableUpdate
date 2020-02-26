@@ -21,6 +21,13 @@ left join ny.person p on b.VANID = p.VANID where p.VANID is null
 
 SELECT p.VANID FROM ny.person p WHERE p.2019P IS null
 
+## if it's too big, then iterate through this
+
+SELECT p.VANID FROM ny.person p
+where p.VANID not in (select * from ny.test t)
+and p.2019P IS null
+
+
 ##B. Import that list to VAN
 ##C. Filter that list in VAN to people that DID vote in the election
 ##D. export that as standard text in VAN with Person table format
