@@ -17,7 +17,7 @@ left join ny.person p on b.VANID = p.VANID where p.VANID is null
 ##6. Change column names and check that data is consistent with person table
 ##7. Upload person table
 ##** Also ** in order to also update existing Person Table records with new vote history
-##A. query all people that don’t have vote history in the server person table: 
+##A. query all people that don’t have vote history in the server person table:
 
 SELECT p.VANID FROM ny.person p WHERE p.2019P IS null
 
@@ -41,4 +41,3 @@ Select p.VANID from ny.person p UNION DISTINCT select s.VANID from ny.scores s
 ##VANID, DWID, Scores
 ##11. Change column names of scores and add new scores
 ##12. Import Scores table to server
-
